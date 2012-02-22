@@ -1,3 +1,5 @@
 A quine is a computer program which takes no input and produces a copy of its own source code as its only output.
 
 Read more at http://en.wikipedia.org/wiki/Quine_(computing)
+
+I didn't spend a lot of time on this yet but so far the only way I could figure out how to do it in PHP was with a blank file.
