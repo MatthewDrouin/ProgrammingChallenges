@@ -1,21 +1,12 @@
 package main
 
-import (
-	"flag"
-	"fmt"
-	"os"
-	"log"
-	"runtime/pprof"
-)
-
-// profiling
-var cpuprofile = flag.String("cpuprofile", "", "write cpu profile to file")
+import "fmt"
 
 var rows [4][][4]int // an array containing a slice which contains an array
 var cols [4][][4]int
 var board [5][5]int // an array containing an array
 
-func start() {
+func init() {
 	board[0][4] = 162
 	board[1][4] = 200
 	board[2][4] = 147
@@ -56,10 +47,12 @@ func possibilities(prod int) (res [][4]int) {
 	return
 }
 
+// Trying to use only the divisors in the for loop 
+// for generating the solutions but it seems to be slower
+// than just doing 1..9 in the for loop 
 func smartPossibilities(prod int) (res [][4]int) {
-	var divisors []int = make([]int, 9)
 
-	divisors = append(divisors, 1)
+	divisors := []int{1}
 
 	for i := 2; i < 10; i++ {
 		if prod%i == 0 {
@@ -158,17 +151,6 @@ func fillCol(col int) (match bool) {
 
 func main() {
 
-	flag.Parse()
-	if *cpuprofile != "" {
-		f, err := os.Create(*cpuprofile)
-		if err != nil {
-			log.Fatal(err)
-		}
-		pprof.StartCPUProfile(f)
-		defer pprof.StopCPUProfile()
-	}
-
-	start()
 	shortRow := shortest(rows)
 	shortCol := shortest(cols)
 	found := false
