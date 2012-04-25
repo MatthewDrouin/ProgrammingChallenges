@@ -1,0 +1,8 @@
+In as few tries as possible turn "first word" into "second word" by changing 1 letter to create a new valid word
+
+Example: If you were given CAT and BAD your program might do
+
+CAT
+CAR
+BAR
+BAD

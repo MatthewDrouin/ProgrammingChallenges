@@ -1,0 +1,15 @@
+** Multiply Columns **
+
+Fill in each empty cell of the grid with a digit from 1 to 9.
+Each number outside the grid is the product of the digits in its row or column.
+
+IMPORTANT: The number 1 can be used ONLY once in any row or column.
+Other numbers can be repeated. Not every digit from 1 though 9 will be used
+
+
+
+  _   _   _   _ 162
+  _   _   _   _ 200
+  _   _   _   _ 147
+  _   _   _   _ 140
+140 150 441  72
