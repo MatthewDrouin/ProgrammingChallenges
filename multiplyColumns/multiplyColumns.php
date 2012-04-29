@@ -161,14 +161,12 @@ class multiplyColumns {
     
         $shortRow = $this->shortest($this->rows);
         $shortCol = $this->shortest($this->cols);
-				$rowCount = count($this->rows[$shortRow]);
-				$colCount = count($this->cols[$shortCol]);
     
-        for ($row = 0; $row < $rowCount; $row++) {
-            for ($col = 0; $col < $colCount; $col++) {
-                if ($this->rows[$shortRow][$row][$shortCol] == $this->cols[$shortCol][$col][$shortRow]) {
-                    $this->insert('row', $shortRow, $this->rows[$shortRow][$row]);
-                    $this->insert('col', $shortCol, $this->cols[$shortCol][$col]);
+				foreach ($this->rows[$shortRow] as $row) {
+            foreach ($this->cols[$shortCol] as $col) {
+                if ($row[$shortCol] == $col[$shortRow]) {
+                    $this->insert('row', $shortRow, $row);
+                    $this->insert('col', $shortCol, $col);
                     if ($this->fillRow(0)) {
                         $this->printBoard();
                         return;
