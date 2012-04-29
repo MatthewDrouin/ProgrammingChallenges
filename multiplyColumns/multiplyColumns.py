@@ -73,8 +73,7 @@ class MultiplyColumns:
 	def fillRow(self, row):
 		# this is kinda hacky
 		if row == 4:
-			match = True
-			return match
+			return True
 		
 		startValue = [self.board[row][0], self.board[row][1], self.board[row][2], self.board[row][3]]
 		
