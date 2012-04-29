@@ -7,11 +7,13 @@ class multiplyColumns {
     protected $board = array(); //[5][5]int // an array containing an array
     
     function __construct() {
-        $this->board[0] = array(0, 0, 0, 0, 162);
-        $this->board[1] = array(0, 0, 0, 0, 200);
-        $this->board[2] = array(0, 0, 0, 0, 147);
-        $this->board[3] = array(0, 0, 0, 0, 140);
-        $this->board[4] = array(140, 150, 441, 72, 0);
+				$this->board = array(
+					array(0, 0, 0, 0, 162),
+					array(0, 0, 0, 0, 200),
+					array(0, 0, 0, 0, 147),
+					array(0, 0, 0, 0, 140),
+					array(140, 150, 441, 72, 0)
+				);
     
         for ($i = 0; $i < 4; $i++) {
             $this->rows[$i] = $this->smartPossibilities($this->board[$i][4]);
@@ -22,7 +24,7 @@ class multiplyColumns {
     function printBoard() {
         for ($row = 0; $row < 5; $row++) {
             for ($col = 0; $col < 5; $col++) {
-                printf(" %3d", $this->board[$row][$col]);
+                printf(' %3d', $this->board[$row][$col]);
             }
             print("\n");
         }
@@ -91,7 +93,7 @@ class multiplyColumns {
     }
     
     function insert($axis, $index, $data) {
-        if ($axis == "row") {
+        if ($axis == 'row') {
             for ($col = 0; $col < 4; $col++) {
                 $this->board[$index][$col] = $data[$col];
             }
@@ -106,8 +108,7 @@ class multiplyColumns {
     
         // this is kinda hacky
         if ($row == 4) {
-            $match = true;
-            return $match;
+            return true;
         }
     
         $startValue = array($this->board[$row][0], $this->board[$row][1], $this->board[$row][2], $this->board[$row][3]);
@@ -120,11 +121,11 @@ class multiplyColumns {
                 }
             }
             if ($match) {
-                $this->insert("row", $row, $value);
+                $this->insert('row', $row, $value);
                 if ($this->fillCol($row)) {
                     return $match;
                 } else {
-                    $this->insert("row", $row, $startValue);
+                    $this->insert('row', $row, $startValue);
                     $match = false;
                 }
             }
@@ -144,11 +145,11 @@ class multiplyColumns {
                 }
             }
             if ($match) {
-                $this->insert("col", $col, $value);
+                $this->insert('col', $col, $value);
                 if ($this->fillRow($col + 1)) {
                     return $match;
                 } else {
-                    $this->insert("col", $col, $startValue);
+                    $this->insert('col', $col, $startValue);
                     $match = false;
                 }
             }
@@ -160,16 +161,15 @@ class multiplyColumns {
     
         $shortRow = $this->shortest($this->rows);
         $shortCol = $this->shortest($this->cols);
-        $found = false;
     
-        for ($row = 0; $row < count($this->rows[$shortRow]) && !$found; $row++) {
-            for ($col = 0; $col < count($this->cols[$shortCol]) && !$found; $col++) {
-                if ($this->rows[$shortRow][$row][$shortCol] == $this->cols[$shortCol][$col][$shortRow]) {
-                    $this->insert("row", $shortRow, $this->rows[$shortRow][$row]);
-                    $this->insert("col", $shortCol, $this->cols[$shortCol][$col]);
+				foreach ($this->rows[$shortRow] as $row) {
+            foreach ($this->cols[$shortCol] as $col) {
+                if ($row[$shortCol] == $col[$shortRow]) {
+                    $this->insert('row', $shortRow, $row);
+                    $this->insert('col', $shortCol, $col);
                     if ($this->fillRow(0)) {
                         $this->printBoard();
-                        $found = true;
+                        return;
                     }
                 }
             }
