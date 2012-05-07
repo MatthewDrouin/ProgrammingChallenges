@@ -12,7 +12,6 @@ container_height = parsed["height"]
 subrects = parsed["subrects"]
 
 container = {}
-taken = {}
 
 fit = lambda do |char, width, height|
   can_fit = lambda do |x, y|
