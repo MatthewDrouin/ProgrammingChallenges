@@ -11,37 +11,6 @@ container_width = parsed["width"]
 container_height = parsed["height"]
 subrects = parsed["subrects"]
 
-# Output data that can be fed back into rects.rb for analysis.
-def output(seed, container_width, container_height, container)
-  area = container_width * container_height
-  empty = 0
-  
-# there has to be a better way to do this
-  (0..container_height - 1).each do |y|
-    (0..container_width - 1).each do |x|
-      if (!container[[x, y]])
-        empty += 1
-      end
-    end
-  end
-  
-  filled = area - empty
-  filled_percent = (filled.to_f/area) * 100
-  
-  puts "Seed: #{seed}"
-  puts "Size: #{container_width} X #{container_height}"
-  puts "Intial Area: #{area} (100%)"
-  puts "Filled Area: #{filled} (#{filled_percent.to_i}%)"
-   
-  (0..container_height - 1).each do |y|
-    (0..container_width - 1).each do |x|
-      char = container[[x, y]]
-      printf(char ? char : ".")
-    end
-    puts
-  end
-end
-
 container = {}
 taken = {}
 
@@ -89,8 +58,15 @@ subrects.sort_by! { |subrect| [-subrect["height"], -subrect["width"]] }.each do 
   fit.call(char, width, height)
 end
 
-puts subrects
-
-output(seed, container_width, container_height, container)
+# Output data that can be fed back into rects.rb for analysis.
+puts "seed: #{seed}"
+puts "size: #{container_width}x#{container_height}"
+(0..container_height - 1).each do |y|
+  (0..container_width - 1).each do |x|
+    char = container[[x, y]]
+    printf(char ? char : ".")
+  end
+  puts
+end
 
 
