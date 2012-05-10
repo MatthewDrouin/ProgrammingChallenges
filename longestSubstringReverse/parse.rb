@@ -4,8 +4,8 @@ string = "Fourscoreandsevenyearsagoourfaathersbroughtforthonthiscontainentanewna
 answer_string = ""
 
 (0 .. string.length - 1).each do |start| 
-  (start .. string.length - 1).each do |stop| 
-    if stop > start and string[stop,1] == string[start,1]
+  (start + 1 .. string.length - 1).each do |stop| 
+    if string[start,1] == string[stop,1]
       local_string = string[start, stop - start + 1 ]
       if local_string == local_string.reverse and local_string.length > answer_string.length 
         answer_string = local_string
