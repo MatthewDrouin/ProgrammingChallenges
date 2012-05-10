@@ -1,20 +1,17 @@
 
 string = "FourscoreandsevenyearsagoourfaathersbroughtforthonthiscontainentanewnationconceivedinzLibertyanddedicatedtothepropositionthatallmenarecreatedequalNowweareengagedinagreahtcivilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"
 
-start = 0
+answer_string = ""
 
-longest_string = ""
-
-string.each_char do |char| 
-  (start .. string.length - 1).find_all do |i| 
-    if i > start and string[i,1] == char
-      local_string = string[start, i - start + 1 ]
-      if local_string == local_string.reverse and local_string.length > longest_string.length 
-        longest_string = local_string
+(0 .. string.length - 1).find_all do |start| 
+  (start .. string.length - 1).find_all do |stop| 
+    if stop > start and string[stop,1] == string[start,1]
+      local_string = string[start, stop - start + 1 ]
+      if local_string == local_string.reverse and local_string.length > answer_string.length 
+        answer_string = local_string
       end
     end
   end
-  start = start + 1
 end
 
-puts longest_string
+puts answer_string
