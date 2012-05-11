@@ -2,7 +2,13 @@
 
 require 'prime'
 
-def nextPrimeFib(n)
+class Array
+    def sum
+        self.inject{|sum,x| sum + x }
+    end
+end
+
+def next_prime_fib(n)
   curr = 0
   succ = 1
   
@@ -13,8 +19,14 @@ def nextPrimeFib(n)
   return succ
 end
 
+def sum_of_prime_divisors(n)
+  array = n.prime_division.flatten.uniq.sort
+  array.shift
+  return array.sum
+end
+
 if ARGV.count == 1
-  puts nextPrimeFib(ARGV[0].to_i)
+  puts sum_of_prime_divisors(next_prime_fib(ARGV[0].to_i)+1)
 else 
   puts "USAGE: next_prime_fib.rb number"
 end
