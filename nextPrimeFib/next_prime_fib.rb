@@ -21,8 +21,7 @@ end
 
 def sum_of_prime_divisors(n)
   array = n.prime_division.flatten.uniq.sort
-  array.shift
-  return array.sum
+  return array.sum - 1
 end
 
 if ARGV.count == 1
