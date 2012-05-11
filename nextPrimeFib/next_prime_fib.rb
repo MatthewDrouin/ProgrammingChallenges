@@ -24,7 +24,11 @@ def sum_of_prime_divisors(n)
 end
 
 if ARGV.count == 1
-  puts sum_of_prime_divisors(next_prime_fib(ARGV[0].to_i)+1)
+  next_prime = next_prime_fib(ARGV[0].to_i)
+  sum_of = sum_of_prime_divisors(next_prime + 1)
+  puts "You gave: #{ARGV[0].to_i}"
+  puts "Next prime fibonacci number is: #{next_prime}"
+  puts "Sum of prime divisors for #{next_prime + 1} is: #{sum_of}"
 else 
   puts "USAGE: next_prime_fib.rb number"
 end
