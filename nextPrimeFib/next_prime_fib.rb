@@ -2,11 +2,11 @@
 
 require 'prime'
 
-def nextFib(n)
+def nextPrimeFib(n)
   curr = 0
   succ = 1
   
-  until succ.prime? and succ > n
+  until succ > n and succ.prime?
     curr, succ = succ, curr + succ
   end
   
@@ -14,7 +14,7 @@ def nextFib(n)
 end
 
 if ARGV.count == 1
-  puts nextFib(ARGV[0].to_i)
+  puts nextPrimeFib(ARGV[0].to_i)
 else 
   puts "USAGE: next_prime_fib.rb number"
 end
