@@ -20,7 +20,7 @@ def next_prime_fib(n)
 end
 
 def sum_of_prime_divisors(n)
-  return n.prime_division.flatten.uniq.sum - 1
+  return n.prime_division.flatten.keep_if {|v| v > 1}.sum
 end
 
 if ARGV.count == 1
